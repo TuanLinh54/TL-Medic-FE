@@ -107,15 +107,48 @@
 }
 
 .home-header-banner {
-  background: url('../../assets/bg-banner.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  // background: url('../../assets/bg-banner.jpg');
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
   opacity: 0.85;
   height: 600px;
   display: flex;
   flex-direction: column;
   margin-top: 5px;
+
+  .Carousel-content {
+
+    .carousel {
+      max-width: 100%;
+      max-height: 500px;
+      margin: 20px auto;
+
+      .slide {
+        background: transparent;
+
+        img {
+          width: 100%;
+          /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+          height: auto;
+          /* Tự động điều chỉnh chiều cao để giữ tỷ lệ */
+          max-height: 500px;
+          /* Giới hạn chiều cao của ảnh */
+          object-fit: contain;
+          /* Cắt ảnh nếu vượt quá kích thước cho phép */
+        }
+      }
+
+      .control-dots {
+        bottom: 10px;
+      }
+
+      .control-arrow {
+        font-size: 30px;
+        color: #fff;
+      }
+    }
+  }
 
   .content-up {
     background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));

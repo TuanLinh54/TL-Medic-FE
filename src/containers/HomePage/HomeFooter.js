@@ -10,7 +10,7 @@ class HomeFooter extends Component {
           &copy; <FormattedMessage id="homepage.footer-infor" />
           <a
             target="blank"
-            href="https://www.facebook.com/huynhvo.tuanlinh.353/"
+            href="https://www.facebook.com/huynhvo.tuanlinh.542/"
           >
             &#8594;<FormattedMessage id="homepage.footer-infor-click-here" /> &#8592;
           </a>

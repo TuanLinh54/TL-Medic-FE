@@ -1,0 +1,77 @@
+.search-specialty-container .search-header-container {
+  position: fixed;
+  width: 100%;
+}
+.search-specialty-container .search-header-container .search-header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  background: #f5f5f5;
+  top: 50px;
+  height: 50px;
+  padding: 10px;
+  z-index: 1;
+}
+.search-specialty-container .search-header-container .search-header .search-input {
+  width: 100%;
+  height: 30px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+.search-specialty-container .search-header-container .search-specialty-header {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.search-specialty-container .search-header-container .search-specialty-header .icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.search-specialty-container .search-header-container .search-specialty-header .icon i {
+  font-size: 20px;
+}
+.search-specialty-container .search-header-container .search-specialty-header .search-specialty-header-name {
+  font-size: 20px;
+}
+.search-specialty-container .search-header-container .search-specialty-header a {
+  text-decoration: none;
+  color: black;
+}
+.search-specialty-container .search-specialty-body {
+  padding-top: 100px;
+}
+.search-specialty-container .search-specialty-body a {
+  text-decoration: none;
+  color: #333;
+}
+.search-specialty-container .search-specialty-body .child-item {
+  padding: 20px;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+.search-specialty-container .search-specialty-body .child-item .child-item-bg {
+  width: 100px;
+  height: 67px;
+  background: no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+.search-specialty-container .search-specialty-body .child-item .child-item-name {
+  margin-left: 8px;
+  color: #333;
+  cursor: pointer;
+}
+.search-specialty-container .search-specialty-body .child-item .child-item-sub-name {
+  margin: 18px 0 0 8px;
+}/*# sourceMappingURL=SearchSpecialty.css.map */

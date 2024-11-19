@@ -11,6 +11,8 @@ import MenuHomeHeader from "./MenuHomeHeader";
 import HomeMenuSearchSpecialty from "./HomeMenuSearchSpecialty";
 import { emitter } from "../../utils/emitter";
 import { Alert } from "reactstrap";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 class HomeHeader extends Component {
   constructor() {
@@ -169,7 +171,29 @@ class HomeHeader extends Component {
         </div>
         {this.props.isShowBanner === true && (
           <div className="home-header-banner">
-            <div className="content-up position-relative">
+            {/* Carousel */}
+            <div className="Carousel-content">
+              <Carousel
+                autoPlay
+                infiniteLoop
+                showThumbs={false}
+                className="Carousel"
+                showArrows={false}
+                showStatus={false}
+              >
+                <div>
+                  <img src="https://bvtb.org.vn/wp-content/uploads/2022/12/dang-ky-kham-benh-online.jpg" alt="Image 1" />
+                </div>
+                <div>
+                  <img src="https://cdcangiang.vn/wp-content/uploads/2023/05/infogp-khuyen-cao-mua-nang-nong-scaled.jpg" alt="Image 2" />
+                </div>
+                <div>
+                  <img src="https://i.ytimg.com/vi/WWGE82EvS1g/maxresdefault.jpg" alt="Image 3" />
+                </div>
+              </Carousel>
+            </div>
+
+            {/* <div className="content-up position-relative">
               <div class="position-absolute" style={{ bottom: "20%", left: "50%", transform: "translateX(-50%)" }}>
                 <div className="title1">
                   <FormattedMessage id="banner.title1" />
@@ -182,7 +206,7 @@ class HomeHeader extends Component {
                   <input type='text' placeholder='Tìm bác sĩ' />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         )}
       </>

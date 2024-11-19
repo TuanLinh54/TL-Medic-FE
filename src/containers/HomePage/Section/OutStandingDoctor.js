@@ -37,8 +37,8 @@ class OutStandingDoctor extends Component {
     }
   };
 
-  handleLoadMore=async () => {
-    let total=this.state.arrDoctors.length+4;
+  handleLoadMore = async () => {
+    let total = this.state.arrDoctors.length + 4;
     this.props.loadTopDoctors(total);
   }
   render() {
@@ -65,90 +65,43 @@ class OutStandingDoctor extends Component {
           </div>
 
           <div class="row">
-                {
-                  arrDoctors &&
-                  arrDoctors.length > 0 && arrDoctors.map((item,index)=>{
-                    let imageBase64 = "";
-                    if (item.image) {
-                      imageBase64 = new Buffer(item.image, "base64").toString(
-                        "binary"
-                      );
-                    }
-                    let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                    let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-                    return (
-                      <div class="col-lg-3 col-auto my-10">
-                          <div class="card-bs-custom pointer" onClick={() => this.handleViewDetailDoctor(item)}>
-                            <figure class="bg-cover bg-center" 
-                              style={{
-                                      backgroundImage: `url(${imageBase64})`,
-                              }}></figure>
-                              <div class="card-body">
-                                  <h3 class="mb-5 font-weight-normal pointer specialty-name fs-15" >{language === LANGUAGES.VI ? nameVi : nameEn}</h3>
-                                  <div class="fs-15">
-                                    {item.Doctor_Infor &&
-                                    item.Doctor_Infor.specialtyData &&
-                                    item.Doctor_Infor.specialtyData.name
-                                      ? item.Doctor_Infor.specialtyData.name
-                                      : ""}
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                    );
-                  })
+            {
+              arrDoctors &&
+              arrDoctors.length > 0 && arrDoctors.map((item, index) => {
+                let imageBase64 = "";
+                if (item.image) {
+                  imageBase64 = new Buffer(item.image, "base64").toString(
+                    "binary"
+                  );
                 }
-              </div>
-              <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary my-15" onClick={() => this.handleLoadMore()}>{this.props.language=="en" ? "Load more" : "Tải thêm"}</button>
-              </div>
-
-          {/* <div className="section-body">
-            <Slider {...this.props.settings}>
-              {arrDoctors &&
-                arrDoctors.length > 0 &&
-                arrDoctors.map((item, index) => {
-                  let imageBase64 = "";
-                  if (item.image) {
-                    imageBase64 = new Buffer(item.image, "base64").toString(
-                      "binary"
-                    );
-                  }
-                  let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
-                  let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-                  return (
-                    <div
-                      className="section-customize"
-                      key={index}
-                      onClick={() => this.handleViewDetailDoctor(item)}
-                    >
-                      <div className="customize-border">
-                        <div className="outer-bg">
-                          <div
-                            className="bg-image section-outstanding-doctor"
-                            style={{
-                              backgroundImage: `url(${imageBase64})`,
-                            }}
-                          ></div>
-                        </div>
-                        <div className="position text-center">
-                          <div>
-                            {language === LANGUAGES.VI ? nameVi : nameEn}
-                          </div>
-                          <div>
-                            {item.Doctor_Infor &&
+                let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+                return (
+                  <div class="col-lg-3 col-auto my-10">
+                    <div class="card-bs-custom pointer" onClick={() => this.handleViewDetailDoctor(item)}>
+                      <figure class="bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url(${imageBase64})`,
+                        }}></figure>
+                      <div class="card-body">
+                        <h3 class="mb-5 font-weight-normal pointer specialty-name fs-15" >{language === LANGUAGES.VI ? nameVi : nameEn}</h3>
+                        <div class="fs-15">
+                          {item.Doctor_Infor &&
                             item.Doctor_Infor.specialtyData &&
                             item.Doctor_Infor.specialtyData.name
-                              ? item.Doctor_Infor.specialtyData.name
-                              : ""}
-                          </div>
+                            ? item.Doctor_Infor.specialtyData.name
+                            : ""}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-            </Slider>
-          </div> */}
+                  </div>
+                );
+              })
+            }
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary my-15" onClick={() => this.handleLoadMore()}>{this.props.language == "en" ? "Load more" : "Tải thêm"}</button>
+          </div>
         </div>
       </div>
     );
