@@ -248,6 +248,7 @@
 "login":{
   "login":"Đăng nhập",
   "username":"Tên đăng nhập",
+  "identifier":"Email hoặc số điện thoại",
   "password":"Mật khẩu",
   "forgot-password":"Quên mật khẩu",
   "sign-up":"Đăng ký",

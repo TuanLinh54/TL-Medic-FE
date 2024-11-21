@@ -1,7 +1,7 @@
 import axios from "../axios";
 
-const handleLoginApi = (email, password) => {
-  return axios.post("/api/login", { email, password });
+const handleLoginApi = (identifier, password) => {
+  return axios.post("/api/login", { identifier, password });
 };
 
 const getAllUsers = (inputId) => {
@@ -29,7 +29,7 @@ const getAllCodeService = (inputType) => {
 };
 
 const getTopDoctorHomeService = (data) => {
-  return axios.post(`/api/top-doctor-home`,data);
+  return axios.post(`/api/top-doctor-home`, data);
 };
 
 const getAllDoctors = () => {
@@ -89,7 +89,7 @@ const createNewClinic = (data) => {
 };
 
 const getAllClinic = (data) => {
-  return axios.post(`/api/get-clinic`,data);
+  return axios.post(`/api/get-clinic`, data);
 };
 
 const getAllDetailClinicById = (data) => {
@@ -158,31 +158,31 @@ const getMonthlyRevenueSpecialty = () => {
 };
 
 const getHandleLoginGoogle = (data) => {
-  return axios.post(`/api/login-google`,data);
+  return axios.post(`/api/login-google`, data);
 };
 
 const filterHistoriesPatient = (data) => {
-  return axios.post(`/api/filter-history`,data);
+  return axios.post(`/api/filter-history`, data);
 };
 
 const filterUsers = (data) => {
-  return axios.post(`/api/filter-users`,data);
+  return axios.post(`/api/filter-users`, data);
 };
 
 const editPassword = (data) => {
-  return axios.post(`/api/edit-password-user`,data);
+  return axios.post(`/api/edit-password-user`, data);
 };
 
 const filterRestoreUsers = (data) => {
-  return axios.post(`/api/filter-restore-users`,data);
+  return axios.post(`/api/filter-restore-users`, data);
 };
 
 const handleRestoreUser = (data) => {
-  return axios.post(`/api/handle-restore-user`,data);
+  return axios.post(`/api/handle-restore-user`, data);
 };
 
 const deleteRestoreUser = (data) => {
-  return axios.post(`/api/delete-restore-user`,data);
+  return axios.post(`/api/delete-restore-user`, data);
 };
 
 export {

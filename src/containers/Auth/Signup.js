@@ -65,6 +65,7 @@ class Signup extends Component {
         this.setState({
           password: "",
           email: "",
+          phonenumber: "",
           firstName: "",
           lastName: "",
           address: "",
@@ -79,7 +80,7 @@ class Signup extends Component {
 
   checkValidateInput = () => {
     let isValid = true;
-    let arrInput = ["email", "password", "firstName", "lastName", "address"];
+    let arrInput = ["email", "password", "firstName", "lastName", "address", "phonenumber"];
     for (let i = 0; i < arrInput.length; i++) {
       if (!this.state[arrInput[i]]) {
         isValid = false;
@@ -147,6 +148,16 @@ class Signup extends Component {
               </div>
             </div>
             <div className="col-12 form-group login-input">
+              <label>Số điện thoại:</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder={this.props.language === "en" ? "Enter your phone number" : "Nhập số điện thoại"}
+                value={this.state.phonenumber}
+                onChange={(event) => this.handleOnChangeInput(event, "phonenumber")}
+              />
+            </div>
+            <div className="col-12 form-group login-input">
               <label><FormattedMessage id={"login.firstname"} />:</label>
               <input
                 type="text"
@@ -180,9 +191,7 @@ class Signup extends Component {
                 onChange={(event) => this.handleOnChangeInput(event, "address")}
               />
             </div>
-            {/* <div className="col-12" style={{ color: "red" }}>
-              {this.state.errMessage}
-            </div> */}
+
             <div className="col-12">
               <button
                 className="btn-login"
@@ -193,37 +202,7 @@ class Signup extends Component {
                 <FormattedMessage id={"login.sign-up"} />
               </button>
             </div>
-            {/* <div className="col-12 section-forgot-signup">
-              <span
-                className="sign-in"
-                onClick={() => {
-                  history.push("/sign-in");
-                }}
-              >
-                <FormattedMessage id={"login.sign-up"} />
-              </span>
-            </div> */}
-            {/* <div className="col-12">
-              <button
-                className="btn-login"
-                onClick={() => {
-                  this.handleAddNewUser();
-                }}
-              >
-                <FormattedMessage id={"login.sign-up"} />
-              </button>
-            </div> */}
-            {/* <div className="col-12 section-forgot-signup">
-              <span className="forgot-password">Forgot your password</span>
-              <span className="sign-up">Sign up</span>
-            </div> */}
-            {/* <div className="col-12 text-center mt-3">
-              <span className="text-other-login">Or Signup with:</span>
-            </div>
-            <div className="col-12 social-login">
-              <i className="fab fa-google-plus-g google"></i>
-              <i className="fab fa-facebook-square facebook"></i>
-            </div> */}
+
           </div>
         </div>
       </div>

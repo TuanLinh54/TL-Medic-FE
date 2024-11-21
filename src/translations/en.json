@@ -248,6 +248,7 @@
   "login":{
     "login":"Login",
     "username":"Username",
+    "identifier":"Email or Phone number",
     "password":"Password",
     "forgot-password":"Forgot Password",
     "sign-up":"Sign up",
