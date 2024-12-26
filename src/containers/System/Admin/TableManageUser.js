@@ -40,7 +40,7 @@ import {
 import { USER_ROLE, USER_POSITION } from "../../../utils";
 import { sentenceCase } from "change-case";
 
-import {withRouter} from '../../../utils/withRouter';  //navigate
+import { withRouter } from '../../../utils/withRouter';  //navigate
 
 // Register plugins if required
 // MdEditor.use(YOUR_PLUGINS_HERE);
@@ -81,7 +81,7 @@ class TableManageUser extends Component {
   }
 
   componentDidMount() {
-    if(this.props.listFilterUsers){
+    if (this.props.listFilterUsers) {
       this.setState({
         usersRedux: this.props.listFilterUsers,
       });
@@ -102,15 +102,15 @@ class TableManageUser extends Component {
   };
 
   handleEditUser = (user) => {
-    console.log("user",user)
-    this.props.navigate('/admin-dashboard/user/edit/'+user.id);
+    console.log("user", user)
+    this.props.navigate('/admin-dashboard/user/edit/' + user.id);
   };
 
-  getValueRole=(roleId)=>{
+  getValueRole = (roleId) => {
     let language = this.props.language;
-    switch(roleId) {
+    switch (roleId) {
       case USER_ROLE.ADMIN:
-        if(language=="en")
+        if (language == "en")
           return (
             <Label variant="ghost" color={"success"}>
               {sentenceCase("ADMIN")}
@@ -124,21 +124,21 @@ class TableManageUser extends Component {
           )
         break;
       case USER_ROLE.DOCTOR:
-        if(language=="en")
+        if (language == "en")
           return (
             <Label variant="ghost" color={"info"}>
               {sentenceCase("DOCTOR")}
             </Label>
           )
         else
-            return (
-              <Label variant="ghost" color={"info"}>
-                {("Bác sĩ")}
-              </Label>
-            )
+          return (
+            <Label variant="ghost" color={"info"}>
+              {("Bác sĩ")}
+            </Label>
+          )
         break;
       case USER_ROLE.PATIENT:
-        if(language=="en")
+        if (language == "en")
           return (
             <Label variant="ghost" color={"warning"}>
               {sentenceCase("PATIENT")}
@@ -157,27 +157,27 @@ class TableManageUser extends Component {
 
   }
 
-  getValuePosition=(positionId)=>{
+  getValuePosition = (positionId) => {
     let language = this.props.language;
-    switch(positionId) {
+    switch (positionId) {
       case USER_POSITION.BACHELOR:
-        if(language=="en") return "Bachelor"
+        if (language == "en") return "Bachelor"
         else return "Bác sĩ"
         break;
       case USER_POSITION.MASTER:
-        if(language=="en") return "Master"
+        if (language == "en") return "Master"
         else return "Thạc sĩ"
         break;
       case USER_POSITION.DOCTOR:
-        if(language=="en") return "Doctor"
+        if (language == "en") return "Doctor"
         else return "Tiến sĩ"
         break;
       case USER_POSITION.ASSOCIATE_PROFESSOR:
-        if(language=="en") return "Associate professor"
+        if (language == "en") return "Associate professor"
         else return "Phó giáo sư"
         break;
       case USER_POSITION.PROFESSOR:
-        if(language=="en") return "Professor"
+        if (language == "en") return "Professor"
         else return "Giáo sư"
         break;
       default:
@@ -197,11 +197,11 @@ class TableManageUser extends Component {
     //   : "None"}
   }
 
-  getStatus=(statusId)=>{
+  getStatus = (statusId) => {
     let language = this.props.language;
-    switch(statusId) {
+    switch (statusId) {
       case 0:
-        if(language=="en")
+        if (language == "en")
           return (
             <Label variant="ghost" color={"success"}>
               {sentenceCase("ACTIVE")}
@@ -214,18 +214,18 @@ class TableManageUser extends Component {
             </Label>
           )
       case 1:
-        if(language=="en")
+        if (language == "en")
           return (
             <Label variant="ghost" color={"info"}>
               {sentenceCase("BANNED")}
             </Label>
           )
         else
-            return (
-              <Label variant="ghost" color={"info"}>
-                {("Cấm")}
-              </Label>
-            )
+          return (
+            <Label variant="ghost" color={"info"}>
+              {("Cấm")}
+            </Label>
+          )
       default:
         return ""
     }
@@ -236,46 +236,9 @@ class TableManageUser extends Component {
   render() {
     let arrUsers = this.state.usersRedux;
     let language = this.props.language;
-    console.log("arrUsers",arrUsers)
+    console.log("arrUsers", arrUsers)
     return (
       <React.Fragment>
-        {/* <table id="TableManageUser">
-          <tbody>
-            <tr>
-              <th>Email</th>
-              <th>FirstName</th>
-              <th>LastName</th>
-              <th>Address</th>
-              <th>Actions</th>
-            </tr>
-            {arrUsers &&
-              arrUsers.length > 0 &&
-              arrUsers.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.email}</td>
-                    <td>{item.firstName}</td>
-                    <td>{item.lastName}</td>
-                    <td>{item.address}</td>
-                    <td>
-                      <button
-                        onClick={() => this.handleEditUser(item)}
-                        className="btn-edit"
-                      >
-                        <i className="fas fa-pencil-alt"></i>
-                      </button>
-                      <button
-                        className="btn-delete"
-                        onClick={() => this.handleDeleteUser(item)}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table> */}
 
         <Card>
           <Scrollbar>
@@ -284,12 +247,12 @@ class TableManageUser extends Component {
                 <UserListHead
                   // order={order}
                   // orderBy={orderBy}
-                  headLabel={language=="vi" ? TABLE_HEAD_VI : TABLE_HEAD}
-                  // rowCount={USERLIST.length}
-                  // rowCount={USERLIST.length}
-                  // numSelected={selected.length}
-                  // onRequestSort={handleRequestSort}
-                  // onSelectAllClick={handleSelectAllClick}
+                  headLabel={language == "vi" ? TABLE_HEAD_VI : TABLE_HEAD}
+                // rowCount={USERLIST.length}
+                // rowCount={USERLIST.length}
+                // numSelected={selected.length}
+                // onRequestSort={handleRequestSort}
+                // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {arrUsers.map((row) => {
@@ -312,6 +275,7 @@ class TableManageUser extends Component {
                       imageBase64 = new Buffer(image, "base64").toString(
                         "binary"
                       );
+
                     }
                     let name = "";
                     if (lastName !== null && firstName != null) {
@@ -330,8 +294,8 @@ class TableManageUser extends Component {
                         key={id}
                         tabIndex={-1}
                         role="checkbox"
-                        // selected={isItemSelected}
-                        // aria-checked={isItemSelected}
+                      // selected={isItemSelected}
+                      // aria-checked={isItemSelected}
                       >
                         {/* <TableCell padding="checkbox">
                             <Checkbox
@@ -353,7 +317,7 @@ class TableManageUser extends Component {
                         </TableCell>
                         <TableCell align="left">{email}</TableCell>
                         <TableCell align="left">
-                            {this.getValueRole(roleId)}
+                          {this.getValueRole(roleId)}
                         </TableCell>
                         <TableCell align="left">{address}</TableCell>
                         <TableCell align="left">

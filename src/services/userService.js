@@ -108,6 +108,16 @@ const getBookingById = (bookingId) => {
   );
 };
 
+const getUserAppointments = (data) => {
+  return axios.get(`/api/get-user-appointments?userId=${data.userId}&date=${data.date}`);
+};
+
+const getListPatientForUser = (data) => {
+  return axios.get(
+    `/api/get-booking-foruser?userId=${data.userId}&date=${data.date}`
+  );
+};
+
 const postSendRemedy = (data) => {
   return axios.post("/api/send-remedy", data);
 };
@@ -185,6 +195,8 @@ const deleteRestoreUser = (data) => {
   return axios.post(`/api/delete-restore-user`, data);
 };
 
+
+
 export {
   getMonthlyRevenueSpecialty,
   getTopFourVipPatient,
@@ -228,5 +240,7 @@ export {
   editPassword,
   filterRestoreUsers,
   handleRestoreUser,
-  deleteRestoreUser
+  deleteRestoreUser,
+  getUserAppointments,
+  getListPatientForUser
 };

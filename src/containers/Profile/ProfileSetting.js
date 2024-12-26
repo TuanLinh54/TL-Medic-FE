@@ -14,6 +14,7 @@ import MyAccount from "./resources/MyAccount";
 import MedicalHistory from "./resources/MedicalHistory";
 
 import { Redirect, Route, Switch } from "react-router-dom";
+import BookingDetail from "./resources/BookingDetail";
 
 
 // import {
@@ -25,33 +26,34 @@ export default function ProfileSetting() {
   const dispatch = useDispatch();
   let history = useHistory();
 
-  const handleBackHome = ()=>{
+  const handleBackHome = () => {
     history.push("/home")
   }
 
 
   return (
-      <div class="">
-        <HomeHeader isShowBanner={false} />
-        <div class="custom-sidebar" style={{height:"100vh"}}><LeftContent /></div>
-        <div class="p-30" style={{marginLeft:"350px",height:"100vh",backgroundColor:"#f5f6fd"}}>
-              <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb breadcrumb-bg" style={{paddingLeft:"unset"}}>
-                          <li style={{color:"#295dfb"}} class="breadcrumb-item pointer" onClick={()=>handleBackHome()}><FormattedMessage id="profile-setting.breadcrumb-home" /></li>
-                          <li class="breadcrumb-item active" aria-current="page"><FormattedMessage id="profile-setting.breadcrumb-settings" /></li>
-                      </ol>
-              </nav>
+    <div class="">
+      <HomeHeader isShowBanner={false} />
+      <div class="custom-sidebar" style={{ height: "100vh" }}><LeftContent /></div>
+      <div class="p-30" style={{ marginLeft: "350px", height: "100vh", backgroundColor: "#f5f6fd" }}>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-bg" style={{ paddingLeft: "unset" }}>
+            <li style={{ color: "#295dfb" }} class="breadcrumb-item pointer" onClick={() => handleBackHome()}><FormattedMessage id="profile-setting.breadcrumb-home" /></li>
+            <li class="breadcrumb-item active" aria-current="page"><FormattedMessage id="profile-setting.breadcrumb-settings" /></li>
+          </ol>
+        </nav>
 
-              <Switch>
-                  <Route path="/user/profile-setting" component={MyAccount} />
-                  <Route path="/user/medical-history" component={MedicalHistory} />
-                  <Route
-                    component={() => {
-                      return <Redirect to={"/user/profile-setting"} />;
-                    }}
-                />
-              </Switch>
-        </div>
+        <Switch>
+          <Route path="/user/profile-setting" component={MyAccount} />
+          <Route path="/user/medical-history" component={MedicalHistory} />
+          <Route path="/user/booking-detail" component={BookingDetail} />
+          <Route
+            component={() => {
+              return <Redirect to={"/user/profile-setting"} />;
+            }}
+          />
+        </Switch>
       </div>
+    </div>
   );
 }

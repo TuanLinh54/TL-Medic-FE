@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
-  const [identifier, setIdentifier] = useState(""); // Thay username bằng identifier
+  const [identifier, setIdentifier] = useState(""); // Email hoặc số điện thoại
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -34,23 +34,27 @@ export default function Login() {
   const handleLogin = async () => {
     setErrMessage("");
     try {
-      let data = await handleLoginApi(identifier, password); // Gửi identifier thay vì username
+      // Gọi API với identifier và password
+      let data = await handleLoginApi(identifier, password);
+
       if (data && data.errCode !== 0) {
+        // Hiển thị thông báo lỗi
         if (language === "vi") {
-          setErrMessage(
-            "Thông tin đăng nhập này không khớp với hồ sơ của chúng tôi."
-          );
+          setErrMessage(data.errMessage || "Email hoặc mật khẩu không đúng!");
         } else {
-          setErrMessage("These credentials do not match our records.");
+          setErrMessage(data.errMessage || "Email or password is incorrect!");
         }
-      }
-      if (data && data.errCode === 0) {
+      } else if (data && data.errCode === 0) {
+        // Thành công, chuyển hướng người dùng
         history.push("/home");
         dispatch(actions.userLoginSuccess(data.user));
       }
     } catch (error) {
+      // Xử lý lỗi từ API
       if (error.response && error.response.data) {
         setErrMessage(error.response.data.message);
+      } else {
+        setErrMessage("An error occurred!");
       }
     }
   };
@@ -99,6 +103,7 @@ export default function Login() {
                 placeholder={
                   language === "en" ? "Enter your password" : "Nhập mật khẩu"
                 }
+                value={password}
                 onChange={(event) => handleOnChangePassword(event)}
                 onKeyDown={(event) => handleKeyDown(event)}
               />
@@ -115,11 +120,8 @@ export default function Login() {
             {errMessage}
           </div>
           <div className="col-12">
-            <button
-              className="btn-login"
-              onClick={() => handleLogin()}
-            >
-              Login
+            <button className="btn-login" onClick={() => handleLogin()}>
+              Đăng nhập
             </button>
           </div>
           <div className="col-12 section-forgot-signup">

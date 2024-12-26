@@ -84,7 +84,8 @@
     "breadcrumb-home":"Home",
     "breadcrumb-settings":"Settings",
     "profile":"Profile",
-    "medical-history":"Medical history"
+    "medical-history":"Medical history",
+    "booking-detail": "Booking Detail"
   },
   "homepage": {
     "outstanding-doctor": "Last week's featured doctor",
@@ -127,8 +128,8 @@
     "booking-modal": {
       "title": "Information to book a medical appointment",
       "patientName": "Patient Name",
-      "phoneNumber": "Phone number",
-      "email": "Email",
+      "phoneNumber": " Phone number",
+      "email": " Email",
       "address": "Address",
       "reason": "Reason for medical axamination",
       "birthday": "Date of birth",
@@ -136,7 +137,8 @@
       "btnConfirm": "Confirm",
       "btnCancel": "Cancel",
       "priceBooking": "Free booking",
-      "price": "Price: "
+      "price": "Price: ",
+      "confirmMethod": "Confirmation method: "
     }
   },
   "admin": {

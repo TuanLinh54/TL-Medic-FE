@@ -34,6 +34,7 @@ class BookingModal extends Component {
       genders: "",
       timeType: "",
       isShowLoading: false,
+      notificationMethod: "",
     };
   }
 
@@ -41,7 +42,7 @@ class BookingModal extends Component {
 
     if (this.props.userInfo && this.props.userInfo.email) {
       this.setState({
-        email:this.props.userInfo.email
+        email: this.props.userInfo.email
       })
     }
 
@@ -71,10 +72,10 @@ class BookingModal extends Component {
     }
 
     if (this.props.userInfo !== prevProps.userInfo) {
-      if(this.props.userInfo && this.props.userInfo.email){
-          this.setState({
-            email:this.props.userInfo.email
-          })
+      if (this.props.userInfo && this.props.userInfo.email) {
+        this.setState({
+          email: this.props.userInfo.email
+        })
       }
     }
 
@@ -83,7 +84,7 @@ class BookingModal extends Component {
         genders: this.buildDataGender(this.props.genders),
       });
     }
-  
+
     if (this.props.dataTime !== prevProps.dataTime) {
       if (this.props.dataTime && !_.isEmpty(this.props.dataTime)) {
         let doctorId = this.props.dataTime.doctorId;
@@ -95,6 +96,15 @@ class BookingModal extends Component {
       }
     }
   }
+
+  handleOnChangeRadio = (event, id) => {
+    let value = event.target.value;
+    this.setState({
+      [id]: value,
+    });
+    console.log(value);
+  };
+
 
   handleOnChangeInput = (event, id) => {
     let valueInput = event.target.value;
@@ -127,9 +137,9 @@ class BookingModal extends Component {
         language === LANGUAGES.VI
           ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
           : moment
-              .unix(+dataTime.date / 1000)
-              .locale("en")
-              .format("ddd - MM/DD/YYYY");
+            .unix(+dataTime.date / 1000)
+            .locale("en")
+            .format("ddd - MM/DD/YYYY");
       return `${time} - ${date}`;
     }
     return "";
@@ -149,7 +159,7 @@ class BookingModal extends Component {
   };
   handleConfirmBooking = async () => {
     this.setState({ isShowLoading: true });
-    let {language}=this.props;
+    let { language } = this.props;
 
     //validate input
     // !data.email || !data.doctorId || !data.timeType || !data.date
@@ -170,33 +180,35 @@ class BookingModal extends Component {
       language: this.props.language,
       timeString: timeString,
       doctorName: doctorName,
+      notificationMethod: this.state.notificationMethod,
     });
+
+
 
     if (res && res.errCode === 0) {
       this.setState({ isShowLoading: false });
-      if(language==="en"){
+      if (language === "en") {
         toast.success("Book a new appointment successfully, please check your email for confirmation!");
-      }else{
+      } else {
         toast.success("Đặt lịch khám thành công, hãy kiểm tra email của bạn để xác nhận!");
       }
-     
+
       this.props.closeBookingClose();
-    } 
-    else if(res && res.errCode === 3)
-    {
+    }
+    else if (res && res.errCode === 3) {
       this.setState({ isShowLoading: false });
-        if(language==="en"){
-          toast.warn("The number of bookings has been exceeded at this time, please choose another time!");
-        }else{
-            toast.warn("Đã quá số lượng giới hạn đặt lịch vào thời gian này bạn vui lòng chọn khung thời gian khác!");
-        }
+      if (language === "en") {
+        toast.warn("The number of bookings has been exceeded at this time, please choose another time!");
+      } else {
+        toast.warn("Đã quá số lượng giới hạn đặt lịch vào thời gian này bạn vui lòng chọn khung thời gian khác!");
+      }
     }
     else {
       this.setState({ isShowLoading: false });
-      if(language==="en"){
-          toast.error("Book a new appointment error!");
-      }else{
-          toast.error("Đặt lịch không thành công!");
+      if (language === "en") {
+        toast.error("Book a new appointment error!");
+      } else {
+        toast.error("Đặt lịch không thành công!");
       }
     }
   };
@@ -318,6 +330,38 @@ class BookingModal extends Component {
                     options={this.state.genders}
                   />
                 </div>
+                <div className="col-12 form-group">
+                  <label>
+                    <FormattedMessage id="patient.booking-modal.confirmMethod" />
+                  </label>
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="notificationMethod"
+                      value="email"
+                      checked={this.state.notificationMethod === "email"}
+                      onChange={(event) => this.handleOnChangeRadio(event, "notificationMethod")}
+                    />
+                    <FormattedMessage id="patient.booking-modal.email" />
+                  </label>
+                </div>
+                <div className="col-6 form-group">
+                  <label>
+                    <input
+                      type="radio"
+                      name="notificationMethod"
+                      value="sms"
+                      checked={this.state.notificationMethod === "sms"}
+                      onChange={(event) => this.handleOnChangeRadio(event, "notificationMethod")}
+                    />
+                    <FormattedMessage id="patient.booking-modal.phoneNumber" />
+                  </label>
+                </div>
+
+
+
               </div>
             </div>
             <div className="booking-modal-footer">

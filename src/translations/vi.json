@@ -83,7 +83,8 @@
     "breadcrumb-home":"Trang chủ",
     "breadcrumb-settings":"Thiết lập",
     "profile":"Hồ sơ",
-    "medical-history":"Lịch sử khám bệnh"
+    "medical-history":"Lịch sử khám bệnh",
+    "booking-detail": "Thông tin lịch khám"
   },
   "homepage": {
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
@@ -126,8 +127,8 @@
     "booking-modal": {
       "title": "Thông tin đặt lịch khám bệnh",
       "patientName": "Tên bệnh nhân",
-      "phoneNumber": "Số điện thoại",
-      "email": "Địa chỉ email",
+      "phoneNumber": " Số điện thoại",
+      "email": " Địa chỉ email",
       "address": "Địa chỉ liên lạc",
       "reason": "Lý do khám",
       "birthday": "Ngày sinh",
@@ -135,7 +136,8 @@
       "btnConfirm": "Xác nhận",
       "btnCancel": "Hủy",
       "priceBooking": "Miễn phí đặt lịch",
-      "price": "Giá khám: "
+      "price": "Giá khám: ",
+      "confirmMethod": "Phương thức xác nhận:"
     }
   },
   "admin": {

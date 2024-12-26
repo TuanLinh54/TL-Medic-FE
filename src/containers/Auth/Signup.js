@@ -28,6 +28,8 @@ class Signup extends Component {
     };
   }
 
+
+
   handleOnChangeInput = (event, id) => {
     let copyState = { ...this.state };
     copyState[id] = event.target.value;
@@ -104,6 +106,7 @@ class Signup extends Component {
     }
   };
 
+
   render() {
     return (
       <div className="login-background">
@@ -157,7 +160,7 @@ class Signup extends Component {
                 onChange={(event) => this.handleOnChangeInput(event, "phonenumber")}
               />
             </div>
-            <div className="col-12 form-group login-input">
+            <div className="col-6 form-group login-input">
               <label><FormattedMessage id={"login.firstname"} />:</label>
               <input
                 type="text"
@@ -169,7 +172,7 @@ class Signup extends Component {
                 }
               />
             </div>
-            <div className="col-12 form-group login-input">
+            <div className="col-6 form-group login-input">
               <label><FormattedMessage id={"login.lastname"} />:</label>
               <input
                 type="text"

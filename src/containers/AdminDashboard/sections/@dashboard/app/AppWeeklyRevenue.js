@@ -63,7 +63,7 @@ const AppWeeklyRevenue = () => {
         />
       </IconWrapperStyle>
       <Typography variant="h3">
-        ${fShortenNumber(totalWeeklyRevenue)}
+        {fShortenNumber(totalWeeklyRevenue)}
       </Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         <FormattedMessage id={"admin-dashboard.dashboard.weekly-revenue"} />

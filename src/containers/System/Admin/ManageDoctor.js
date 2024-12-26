@@ -14,7 +14,7 @@ import Select from "react-select";
 import { getDetailInforDoctor } from "../../../services/userService";
 import { filterDoctors } from "../../../services/doctorService";
 
-import {withRouter} from '../../../utils/withRouter';
+import { withRouter } from '../../../utils/withRouter';
 
 // const options = [
 //   { value: "chocolate", label: "Chocolate" },
@@ -28,10 +28,10 @@ class ManageDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName:"",
-      lastName:"",
-      position:"",
-      positionArr:[],
+      firstName: "",
+      lastName: "",
+      position: "",
+      positionArr: [],
 
       //save to markdown table
       contentMarkdown: "",
@@ -61,15 +61,15 @@ class ManageDoctor extends Component {
     };
   }
 
-  componentDidMount = async()=>{
+  componentDidMount = async () => {
     this.props.getPositionStart();
     this.props.fetchAllDoctors();
     this.props.getAllRequiredDoctorInfor();
     let res = await filterDoctors({})
-    if(res && res.errCode===0){
-        this.setState({
-          listDoctorsRaw:res.data
-        })
+    if (res && res.errCode === 0) {
+      this.setState({
+        listDoctorsRaw: res.data
+      })
     }
   }
 
@@ -233,7 +233,7 @@ class ManageDoctor extends Component {
   };
 
   handleChangeSelect = async (selectedOption) => {
-    console.log("selectedOption",selectedOption)
+    console.log("selectedOption", selectedOption)
     this.setState({ selectedOption });
     let { listPayment, listPrice, listProvince, listSpecialty, listClinic } =
       this.state;
@@ -340,7 +340,7 @@ class ManageDoctor extends Component {
     });
   };
 
-  handleReset =async ()=>{
+  handleReset = async () => {
     this.setState({
       firstName: "",
       lastName: "",
@@ -348,42 +348,42 @@ class ManageDoctor extends Component {
     })
 
     let res = await filterDoctors({})
-    if(res && res.data){
-          this.setState({
-            listDoctorsRaw:res.data
-          })
+    if (res && res.data) {
+      this.setState({
+        listDoctorsRaw: res.data
+      })
     }
 
   };
 
-    handleFilterDoctors = async ()=>{
-      let {
-        firstName,
-        lastName,
-        position,
-      } = this.state;
-  
-      let data={
-        firstName:firstName,
-        lastName:lastName,
-        position:position,
-      }
-  
-      let res = await filterDoctors(data)
-      if(res && res.data){
-            this.setState({
-              listDoctorsRaw:res.data
-            })
-      }
-  
-    };
+  handleFilterDoctors = async () => {
+    let {
+      firstName,
+      lastName,
+      position,
+    } = this.state;
+
+    let data = {
+      firstName: firstName,
+      lastName: lastName,
+      position: position,
+    }
+
+    let res = await filterDoctors(data)
+    if (res && res.data) {
+      this.setState({
+        listDoctorsRaw: res.data
+      })
+    }
+
+  };
 
   render() {
-    let { hasOldData, listSpecialty, listDoctorsRaw, firstName,lastName,position} = this.state;
+    let { hasOldData, listSpecialty, listDoctorsRaw, firstName, lastName, position } = this.state;
     let positions = this.state.positionArr;
     let { language } = this.props;
 
-    console.log("listDoctorsRaw",listDoctorsRaw)
+    // console.log("listDoctorsRaw", listDoctorsRaw)
     // let arrUsers = this.state.usersRedux;
 
     // selectedPrice: "",
@@ -392,270 +392,108 @@ class ManageDoctor extends Component {
 
     return (
       <div>
-          <div className="title mb-60">
-              <FormattedMessage id="admin.manage-doctor.title" />
-          </div>
-
-          <div class="row">
-              <div class="col-12">
-                  <h3><FormattedMessage id="medical-history.filters" /></h3>
-              </div>
-              <div class="col-3">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1"> <FormattedMessage id="manage-user.first-name" /></label>
-                        <input value={firstName} onChange={(event)=>this.onChangeInput(event,"firstName")} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
-                      </div>
-              </div>
-              <div class="col-3">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1"> <FormattedMessage id="manage-user.last-name" /></label>
-                    <input value={lastName} onChange={(event)=>this.onChangeInput(event,"lastName")} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
-                  </div>
-              </div>
-              <div class="col-3">
-                <label>
-                  <FormattedMessage id="manage-user.position" />
-                </label>
-                <select
-                  class="form-control"
-                  onChange={(event) => {
-                    this.onChangeInput(event, "position");
-                  }}
-                  value={position}
-                >
-                    <option value="">
-                          {language === LANGUAGES.VI
-                            ? "Chọn chức danh"
-                            : "Choose positon"}
-                        </option>
-                  {positions &&
-                    positions.length > 0 &&
-                    positions.map((item, index) => {
-                      return (
-                        <option key={index} value={item.keyMap}>
-                          {language === LANGUAGES.VI
-                            ? item.valueVi
-                            : item.valueEn}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div class="col-12">
-                  <button onClick={()=>this.handleFilterDoctors()} type="button" class="btn btn-primary mr-5"><FormattedMessage id="medical-history.apply" /></button> 
-                  <button  onClick={()=>this.handleReset()} type="button" class="btn btn-primary"><FormattedMessage id="medical-history.reset" /></button> 
-              </div>
-          </div>
-
-          <table class="table table-striped mt-30">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Image</th>
-                    <th scope="col"><FormattedMessage id="admin.manage-doctor.name" /></th>
-                    <th scope="col"><FormattedMessage id="admin.manage-doctor.position" /></th>
-                    <th scope="col"><FormattedMessage id="admin.manage-doctor.specialty-head" /></th>
-                    <th scope="col"><FormattedMessage id="admin.manage-doctor.hospital" /></th>
-                    <th scope="col"><FormattedMessage id="admin.manage-doctor.province" /></th>
-                    <th scope="col" class="text-right">&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-              {
-                listDoctorsRaw.map((doctor,index)=>{
-                  let imageBase64 = "";
-                  if (doctor.image) {
-                    imageBase64 = new Buffer(doctor.image, "base64").toString(
-                      "binary"
-                    );
-                  }
-                  return(
-                    <tr>
-                        <td scope="row">{index+1}</td>
-                        <td style={{width: '100px', height:'100px', backgroundImage: `url(${imageBase64})`,backgroundSize: 'cover'}}></td>
-                        <td>{doctor.lastName + " "+ doctor.firstName}</td>
-                        <td>{language=="en" ? doctor.positionData.valueEn : doctor.positionData.valueVi}</td>
-                        <td>{doctor.Doctor_Infor.specialtyData.name}</td>
-                        <td>{doctor.Doctor_Infor.clinicData.name}</td>
-                        <td>{language=="en" ? doctor.Doctor_Infor.provinceTypeData.valueEn : doctor.Doctor_Infor.provinceTypeData.valueVi}</td>
-                        <td class="text-right">
-                              <button
-                                className="btn-edit"
-                                onClick={()=>{this.props.navigate(`/admin-dashboard/manage-doctor/edit/${doctor.id}`, { replace: true });}}
-                              >
-                                <i className="fas fa-pencil-alt"></i>
-                              </button>
-                        </td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-        </table>
-  
-      {/* <div className="manage-doctor-container">
-        <div className="manage-doctor-title">
+        <div className="title mb-60">
           <FormattedMessage id="admin.manage-doctor.title" />
         </div>
-        <div className="more-infor">
-          <div className="content-left form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.select-doctor" />
-            </label>
-            <Select
-              value={this.state.selectedOption}
-              onChange={this.handleChangeSelect}
-              options={this.state.listDoctors}
-              placeholder={
-                <FormattedMessage id="admin.manage-doctor.select-doctor" />
-              }
-            />
+
+        <div class="row">
+          <div class="col-12">
+            <h3><FormattedMessage id="medical-history.filters" /></h3>
           </div>
-          <div className="content-right form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.intro" />
-            </label>
-            <textarea
-              className="form-control"
-              onChange={(event) =>
-                this.handleOnChangeText(event, "description")
-              }
-              value={this.state.description}
-            ></textarea>
+          <div class="col-3">
+            <div class="form-group">
+              <label for="exampleInputEmail1"> <FormattedMessage id="manage-user.first-name" /></label>
+              <input value={firstName} onChange={(event) => this.onChangeInput(event, "firstName")} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+            </div>
           </div>
-        </div>
-        <div className="more-infor-extra row">
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.price" />
-            </label>
-            <Select
-              value={this.state.selectedPrice}
-              onChange={this.handleChangeSelectDoctorInfor}
-              options={this.state.listPrice}
-              placeholder={<FormattedMessage id="admin.manage-doctor.price" />}
-              name="selectedPrice"
-            />
+          <div class="col-3">
+            <div class="form-group">
+              <label for="exampleInputEmail1"> <FormattedMessage id="manage-user.last-name" /></label>
+              <input value={lastName} onChange={(event) => this.onChangeInput(event, "lastName")} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" />
+            </div>
           </div>
-          <div className="col-4 form-group">
+          <div class="col-3">
             <label>
-              <FormattedMessage id="admin.manage-doctor.payment" />
+              <FormattedMessage id="manage-user.position" />
             </label>
-            <Select
-              value={this.state.selectedPayment}
-              onChange={this.handleChangeSelectDoctorInfor}
-              options={this.state.listPayment}
-              placeholder={
-                <FormattedMessage id="admin.manage-doctor.payment" />
-              }
-              name="selectedPayment"
-            />
+            <select
+              class="form-control"
+              onChange={(event) => {
+                this.onChangeInput(event, "position");
+              }}
+              value={position}
+            >
+              <option value="">
+                {language === LANGUAGES.VI
+                  ? "Chọn chức danh"
+                  : "Choose positon"}
+              </option>
+              {positions &&
+                positions.length > 0 &&
+                positions.map((item, index) => {
+                  return (
+                    <option key={index} value={item.keyMap}>
+                      {language === LANGUAGES.VI
+                        ? item.valueVi
+                        : item.valueEn}
+                    </option>
+                  );
+                })}
+            </select>
           </div>
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.province" />
-            </label>
-            <Select
-              value={this.state.selectedProvice}
-              onChange={this.handleChangeSelectDoctorInfor}
-              options={this.state.listProvince}
-              placeholder={
-                <FormattedMessage id="admin.manage-doctor.province" />
-              }
-              name="selectedProvice"
-            />
+          <div class="col-12">
+            <button onClick={() => this.handleFilterDoctors()} type="button" class="btn btn-primary mr-5"><FormattedMessage id="medical-history.apply" /></button>
+            <button onClick={() => this.handleReset()} type="button" class="btn btn-primary"><FormattedMessage id="medical-history.reset" /></button>
           </div>
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.nameClinic" />
-            </label>
-            <input
-              className="form-control"
-              onChange={(event) => this.handleOnChangeText(event, "nameClinic")}
-              value={this.state.nameClinic}
-            />
-          </div>
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.addressClinic" />
-            </label>
-            <input
-              className="form-control"
-              onChange={(event) =>
-                this.handleOnChangeText(event, "addressClinic")
-              }
-              value={this.state.addressClinic}
-            />
-          </div>
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.note" />
-            </label>
-            <input
-              className="form-control"
-              onChange={(event) => this.handleOnChangeText(event, "note")}
-              value={this.state.note}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.specialty" />
-            </label>
-            <Select
-              value={this.state.selectedSpecialty}
-              onChange={this.handleChangeSelectDoctorInfor}
-              options={this.state.listSpecialty}
-              placeholder={
-                <FormattedMessage id="admin.manage-doctor.specialty" />
-              }
-              name="selectedSpecialty"
-            />
-          </div>
-          <div className="col-4 form-group">
-            <label>
-              <FormattedMessage id="admin.manage-doctor.select-clinic" />
-            </label>
-            <Select
-              value={this.state.selectedClinic}
-              onChange={this.handleChangeSelectDoctorInfor}
-              options={this.state.listClinic}
-              placeholder={
-                <FormattedMessage id="admin.manage-doctor.select-clinic" />
-              }
-              name="selectedClinic"
-            />
-          </div>
-        </div>
-        <div className="manage-doctor-editor">
-          <MdEditor
-            style={{ height: "300px" }}
-            renderHTML={(text) => mdParser.render(text)}
-            onChange={this.handleEditorChange}
-            value={this.state.contentMarkdown}
-          />
         </div>
 
-        <button
-          onClick={() => this.handleSaveContentMarkdown()}
-          className={
-            hasOldData === true
-              ? "save-content-doctor"
-              : "create-content-doctor"
-          }
-        >
-          {hasOldData === true ? (
-            <span>
-              <FormattedMessage id="admin.manage-doctor.save" />
-            </span>
-          ) : (
-            <span>
-              <FormattedMessage id="admin.manage-doctor.add" />
-            </span>
-          )}
-        </button>
-      </div> */}
+        <table class="table table-striped mt-30">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Image</th>
+              <th scope="col"><FormattedMessage id="admin.manage-doctor.name" /></th>
+              <th scope="col"><FormattedMessage id="admin.manage-doctor.position" /></th>
+              <th scope="col"><FormattedMessage id="admin.manage-doctor.specialty-head" /></th>
+              <th scope="col"><FormattedMessage id="admin.manage-doctor.hospital" /></th>
+              <th scope="col"><FormattedMessage id="admin.manage-doctor.province" /></th>
+              <th scope="col" class="text-right">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              listDoctorsRaw.map((doctor, index) => {
+                let imageBase64 = "";
+                if (doctor.image) {
+                  imageBase64 = new Buffer(doctor.image, "base64").toString(
+                    "binary"
+                  );
+
+                }
+
+                return (
+                  <tr>
+                    <td scope="row">{index + 1}</td>
+                    <td style={{ width: '100px', height: '100px', backgroundImage: `url(${doctor.image})`, backgroundSize: 'cover' }}></td>
+                    <td>{doctor.lastName + " " + doctor.firstName}</td>
+                    <td>{language == "en" ? doctor.positionData.valueEn : doctor.positionData.valueVi}</td>
+                    <td>{doctor.Doctor_Infor.specialtyData.name}</td>
+                    <td>{doctor.Doctor_Infor.clinicData.name}</td>
+                    <td>{language == "en" ? doctor.Doctor_Infor.provinceTypeData.valueEn : doctor.Doctor_Infor.provinceTypeData.valueVi}</td>
+                    <td class="text-right">
+                      <button
+                        className="btn-edit"
+                        onClick={() => { this.props.navigate(`/admin-dashboard/manage-doctor/edit/${doctor.id}`, { replace: true }); }}
+                      >
+                        <i className="fas fa-pencil-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
       </div>
     );
   }

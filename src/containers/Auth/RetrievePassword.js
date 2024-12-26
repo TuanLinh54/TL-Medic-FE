@@ -134,24 +134,24 @@ const RetrievePassword = () => {
         });
 
         if (res && res.errCode === 0) {
-          if(language=="en"){
+          if (language == "en") {
             toast.success("Retrieve password succeed!");
-          }else{
+          } else {
             toast.success("Lấy lại mật khẩu thành công!");
           }
           history.push("/login");
         } else {
-          if(language=="en"){
+          if (language == "en") {
             toast.error("Retrieve password error!");
-          }else{
+          } else {
             toast.error("Lấy lại mật khẩu thất bại!");
           }
         }
       }
     } else {
-      if(language=="en"){
+      if (language == "en") {
         toast.error("New password and confirm new password do not match!");
-      }else{
+      } else {
         toast.error("Mật khẩu mới và xác nhận mật khẩu mới không khớp!");
       }
     }
@@ -163,7 +163,7 @@ const RetrievePassword = () => {
         <Grid container spacing={1} className={classes.container}>
           <Grid item xs={12}>
             <Typography variant="h4" className={classes.titleRetrieve}>
-              Retrieve Password
+              Lấy lại mật khẩu
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -184,7 +184,7 @@ const RetrievePassword = () => {
           <Grid item xs={12}>
             <FormControl className={clsx(classes.margin, classes.textField)}>
               <InputLabel htmlFor="standard-adornment-password">
-                New Password
+                Mật khẩu mới
               </InputLabel>
               <Input
                 id="standard-adornment-password"
@@ -208,7 +208,7 @@ const RetrievePassword = () => {
           <Grid item xs={12}>
             <FormControl className={clsx(classes.margin, classes.textField)}>
               <InputLabel htmlFor="standard-adornment-password">
-                Confirm New Password
+                Xác nhận mật khẩu mới
               </InputLabel>
               <Input
                 id="standard-adornment-password"
@@ -239,7 +239,7 @@ const RetrievePassword = () => {
               className={classes.ButtonbtnRetrieve}
               onClick={() => handleRetrievePassword()}
             >
-              Retrieve
+              Xác nhận
             </Button>
           </Grid>
         </Grid>
